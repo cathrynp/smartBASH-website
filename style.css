@@ -131,6 +131,7 @@ nav .wrap {
 
 /* NAV (updated for logo icon + simple Home/Shop) */
 .logo { display: flex; align-items: center; gap: 8px; }
+.logo img { height: 42px; width: auto; display: block; }
 .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
 .logo-smart { color: var(--yellow); }
 .logo-bash { color: var(--teal); }

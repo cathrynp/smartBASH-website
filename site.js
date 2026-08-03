@@ -47,13 +47,63 @@ function openProductModal(handle) {
         <h2 style="font-size:1.4rem; margin-bottom:8px;">${escapeHtml(p.title)}</h2>
         <div class="price" style="font-size:1.3rem; margin-bottom:14px;">$${p.price}</div>
         <div class="description">${p.description}</div>
-        <div class="buy-button-slot" data-handle="${p.handle}">
-          <div class="placeholder-note">Buy Button goes here — generate from Shopify Admin → Sales Channels → Buy Button for this product, then paste the embed code into the matching slot in this file.</div>
-        </div>
+        <div class="buy-button-slot" id="buy-button-slot" data-handle="${p.handle}"></div>
       </div>
     </div>
   `;
   overlay.classList.add('active');
+  renderBuyButton(p.handle);
+}
+
+let shopifyBuyClient = null;
+
+function getShopifyBuyClient(callback) {
+  if (window.ShopifyBuy && window.ShopifyBuy.UI) {
+    if (!shopifyBuyClient) {
+      shopifyBuyClient = window.ShopifyBuy.buildClient(SHOPIFY_BUY_CONFIG);
+    }
+    callback(shopifyBuyClient);
+    return;
+  }
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  script.onload = () => {
+    shopifyBuyClient = window.ShopifyBuy.buildClient(SHOPIFY_BUY_CONFIG);
+    callback(shopifyBuyClient);
+  };
+  document.head.appendChild(script);
+}
+
+function renderBuyButton(handle) {
+  const slot = document.getElementById('buy-button-slot');
+  const productId = BUY_BUTTON_PRODUCT_IDS[handle];
+  if (!productId) {
+    slot.innerHTML = '<div class="placeholder-note">Buy Button coming soon for this product.</div>';
+    return;
+  }
+  slot.innerHTML = '';
+  getShopifyBuyClient((client) => {
+    window.ShopifyBuy.UI.onReady(client).then((ui) => {
+      ui.createComponent('product', {
+        id: productId,
+        node: slot,
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          product: {
+            styles: { product: { '@media (min-width: 601px)': { 'max-width': '100%', 'margin-left': '0', 'margin-bottom': '0' } } },
+            text: { button: 'Add to cart' }
+          },
+          modalProduct: {
+            contents: { img: false, imgWithCarousel: true, button: false, buttonWithQuantity: true },
+            text: { button: 'Add to cart' }
+          },
+          cart: { text: { total: 'Subtotal', button: 'Checkout' } },
+          toggle: {}
+        }
+      });
+    });
+  });
 }
 
 function closeProductModal() {

@@ -7,6 +7,23 @@ const SHOPIFY_BUY_CONFIG = {
 };
 
 const BUY_BUTTON_PRODUCT_IDS = {
+  "compostable-sugarcane-clamshell-9in-3compartment": "8540092727433",
+  "compostable-plates-7in-round": "8540091056265",
+  "compostable-plates-10in-3compartment": "8540090728585",
+  "compostable-food-trays-5comp-400pk": "8539785887881",
+  "compostable-food-trays-10in-rectangle": "8540091121801",
+  "compostable-dinner-plates-french-creme-10-5-inch-30-pack": "8540093382793",
+  "compostable-bowls-16oz-bamboo-bagasse-150count": "8540096725129",
+  "bosnal-sugarcane-bagasse-compostable-plates-10-inch-oval": "8540090466441",
+  "bosnal-sugarcane-bagasse-compostable-bowls-32-oz-round": "8540092694665",
+  "bosnal-sugarcane-bagasse-compostable-bowls-16-oz-round": "8540090531977",
+  "bosnal-9in-round-palm-leaf-plates": "8578704408713",
+  "bambuddha-square-bamboo-leaf-plates-100ct": "8578703786121",
+  "9in-square-wooden-plates-300pk": "8578704834697",
+  "9in-round-palm-leaf-plates-300pk": "8578706243721",
+  "8in-round-palm-leaf-bowls-240pk": "8578707751049",
+  "7in-square-wooden-plates-300pk": "8578705850505",
+  "6-pack-reusable-water-ballon": "8567313694857",
   "starlight-shimmer-stick": "8540106129545",
   "succulent-cuttings-25-varieties": "8540138700937",
   "succulent-cuttings-terracotta-pots-set-of-60": "8540138766473",

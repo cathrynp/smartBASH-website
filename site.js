@@ -77,6 +77,25 @@ function getShopifyBuyClient(callback) {
 
 function renderBuyButton(handle) {
   const slot = document.getElementById('buy-button-slot');
+  const product = ALL_PRODUCTS.find(x => x.handle === handle);
+
+  // Affiliate link takes priority when present
+  if (product && product.affiliateUrl) {
+    const vendorLabel = escapeHtml(product.vendor || 'Retailer');
+    slot.innerHTML = `
+      <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer sponsored"
+         style="display:inline-block; width:100%; box-sizing:border-box; text-align:center;
+                background:#1A7A78; color:#ffffff; font-weight:600; text-decoration:none;
+                padding:14px 20px; border-radius:8px; font-size:1rem;">
+        Buy from ${vendorLabel} &rarr;
+      </a>
+      <div style="margin-top:8px; font-size:0.8rem; color:#777; text-align:center;">
+        Opens ${vendorLabel}'s website to complete your purchase
+      </div>
+    `;
+    return;
+  }
+
   const productId = BUY_BUTTON_PRODUCT_IDS[handle];
   if (!productId) {
     slot.innerHTML = '<div class="placeholder-note">Buy Button coming soon for this product.</div>';

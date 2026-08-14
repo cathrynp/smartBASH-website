@@ -87,7 +87,7 @@ function renderBuyButton(handle) {
          style="display:inline-block; width:100%; box-sizing:border-box; text-align:center;
                 background:#1A7A78; color:#ffffff; font-weight:600; text-decoration:none;
                 padding:14px 20px; border-radius:8px; font-size:1rem;">
-        Buy from ${vendorLabel} &rarr;
+        Buy
       </a>
       <div style="margin-top:8px; font-size:0.8rem; color:#777; text-align:center;">
         Opens ${vendorLabel}'s website to complete your purchase

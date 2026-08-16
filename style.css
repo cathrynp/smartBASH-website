@@ -50,17 +50,18 @@ nav .wrap {
 
 /* CATEGORY TILES */
 .category-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: flex; flex-wrap: wrap; justify-content: center;
   gap: 24px; padding: 56px 0;
 }
-@media (max-width: 900px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .category-grid { grid-template-columns: 1fr; } }
 .category-tile {
   background: var(--white); border-radius: 18px; padding: 28px 22px;
   text-decoration: none; color: var(--charcoal);
   border: 1px solid rgba(43,43,38,0.08);
   transition: transform 0.15s ease;
+  flex: 0 1 calc(25% - 18px); box-sizing: border-box;
 }
+@media (max-width: 900px) { .category-tile { flex-basis: calc(50% - 12px); } }
+@media (max-width: 480px) { .category-tile { flex-basis: 100%; } }
 .category-tile:hover { transform: translateY(-3px); border-color: var(--teal); }
 .category-tile h3 { font-size: 1.15rem; margin-bottom: 4px; }
 .category-tile p { font-size: 0.85rem; color: var(--charcoal-soft); margin: 0; }
